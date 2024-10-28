@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+// percorre todas as linhas da matriz e ve se tem valores repetidos 
+
 int verifica_linha_99(int matriz[9][9]) {
     int i, j, k;
 
@@ -19,6 +21,8 @@ int verifica_linha_99(int matriz[9][9]) {
     return 1;
 }
 
+// percorre todas as colunas da matriz e ve se tem valores repetidos 
+
 int verifica_coluna_99(int matriz[9][9]) {
     int i, j, k;
 
@@ -37,11 +41,12 @@ int verifica_coluna_99(int matriz[9][9]) {
     return 1;
 }
 
+// cria uma matriz 3x3 e dps chama uma função que verifica se tem valores iguais nela
+
 int monta_matriz_33(int matriz[9][9]) {
     int i, j, k, l;
     int nova[3][3];
 
-    // Criando as submatrizes 3x3
     for (i = 0; i < 9; i += 3) {
         for (j = 0; j < 9; j += 3) {
             for (k = 0; k < 3; k++) {
@@ -56,6 +61,9 @@ int monta_matriz_33(int matriz[9][9]) {
     }
     return 1;
 }
+
+/* variavel num vale de 1 a 9 e cada ocorrencia, sua qnt aumenta. Se a qnt for maior q 1, significa que tem valores repetidos 
+e nao pode formar um sudoku */
 
 int verifica_matriz_33(int nova[3][3]) {
     int num, i, j, qnt;

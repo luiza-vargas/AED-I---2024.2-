@@ -1,3 +1,6 @@
+/* Luiza Claro Vargas
+ RA: 168982 */
+
 #include <stdio.h>
 
 // percorre todas as linhas da matriz e ve se tem valores repetidos 

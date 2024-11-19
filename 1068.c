@@ -1,5 +1,6 @@
- #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct cel {
     char dado;
@@ -38,44 +39,56 @@ int verifica(char *expressao) {
     int i;
     char c;
 
-    // Processa cada caractere da expressão
     for (i = 0; expressao[i] != '\0'; i++) {
         c = expressao[i];
 
         if (c == '(') {
-            empilha(c, &aux);  // Empilha '('
+            empilha(c, &aux);  // se tem '(' coloca ele na pilha
         } else if (c == ')') {
-            if (aux.prox == NULL) { 
-               
-                return 0; // Errado
+            if (aux.prox == NULL) { // se ta vazia, ')' nao tem correspondente
+                libera(aux.prox);
+                return 0; 
             }
-            // Desempilha quando encontrar ')'
             desempilha(&aux);
         }
-        // Ignora qualquer outro caractere (não parênteses)
     }
 
-    // Verifica se a pilha está vazia (todos os parênteses foram fechados)
     if (aux.prox == NULL) {
-        return 1; // Certo
+        return 1; // certinho
     } else {
         libera(aux.prox);
-        return 0; // Errado
+        return 0; // errado
     }
 }
 
 int main() {
     char expressao[1001];
-    int count=0;
-    do{
-    fgets(expressao, 1000, stdin);
-    
-    if (expressao[0]!='\n' &&verifica(expressao)) {
-        printf("correct\n");
-    } else if (expressao[0]!='\n') {
-        printf("incorrect\n");
+    int count = 0;
+
+    while (count < 10000 && fgets(expressao, 1000, stdin)) {
+        // Remover o caractere de nova linha se estiver presente
+        if (expressao[strlen(expressao) - 1] == '\n') {
+            expressao[strlen(expressao) - 1] = '\0';
+        }
+        
+        if (expressao[0] != '\0') {
+            if (verifica(expressao)) {
+                printf("correct\n");
+            } else {
+                printf("incorrect\n");
+            }
+            count++;
+        }
     }
-    count++;
-    }while(count<10000 && expressao[0]!='\n');
+
     return 0;
 }
+
+/*
+1. **Memória Liberada**:
+   A função `libera` é chamada sempre que a pilha tem elementos remanescentes após a verificação, tanto na condição de erro quanto no final da verificação correta.
+   
+2. **Remoção do `\n`**:
+   Usei `strlen` para verificar e remover o caractere de nova linha `\n`, garantindo que as entradas estejam corretas.
+*/
+

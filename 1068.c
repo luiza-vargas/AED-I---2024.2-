@@ -65,7 +65,7 @@ int verifica(char *expressao) {
 }
 
 int main() {
-    char expressao[1000];
+    char expressao[1001];
     int count=0;
     do{
     fgets(expressao, 1000, stdin);

@@ -6,13 +6,11 @@
     void Intercala(int p, int q, int r, int v[]) {
         int i, j, k, *w;
 
-        // Aloca espaço para o vetor auxiliar
         w = malloc((r - p) * sizeof(int));
         i = p;
         j = q;
         k = 0;
 
-        // Combina os dois subarrays ordenados
         while (i < q && j < r) {
             if (v[i] <= v[j]) {
                 w[k++] = v[i++];
@@ -44,13 +42,8 @@
         if (p < r - 1) {
             int q = (p + r) / 2;
 
-            // Recursivamente ordena o subarray esquerdo
             Mergesort(p, q, v);
-
-            // Recursivamente ordena o subarray direito
             Mergesort(q, r, v);
-
-            // Intercala os dois subarrays ordenados
             Intercala(p, q, r, v);
         }
     }
@@ -61,7 +54,6 @@
 
         printf("Tamanho\tTempo (s)\n");
 
-        // Itera sobre tamanhos de vetor de 0 até 400.000 (incrementando 20.000)
         for (int tamanho = 0; tamanho <= 400000; tamanho += 20000) {
             // Aloca dinamicamente o vetor
             vetor = (int *)malloc(tamanho * sizeof(int));

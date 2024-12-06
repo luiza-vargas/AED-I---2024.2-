@@ -2,7 +2,6 @@
     #include <stdlib.h>
     #include <time.h> // clock(), CLOCKS_PER_SEC e clock_t
 
-    // Função de Insertion Sort
     void insercao(int N, int v[]) {
         int i, j, aux;
         for (j = 1; j < N; j++) {
@@ -10,22 +9,22 @@
             for (i = j - 1; i >= 0 && v[i] > aux; i--) {
                 v[i + 1] = v[i];
             }
-            v[i + 1] = aux; // Coloca o valor correto na posição
+            v[i + 1] = aux; 
         }
     }
 
     int main() {
-        clock_t t; // variável para armazenar tempo
+        clock_t t; // variavel para armazenar tempo
         int *vetor;
         int tamanho;
 
-        // Gera a semente de aleatoriedade
+        // gera a semente de aleatoriedade
         srand((unsigned)time(NULL));
         
         printf(" tamanho      tempo \n");
         
         for (tamanho = 0; tamanho <= 400000; tamanho += 20000) {
-            // Aloca dinamicamente o vetor com o tamanho atual
+            // aloca dinamicamente o vetor com o tamanho atual
             vetor = (int *)malloc(tamanho * sizeof(int));
             if (vetor == NULL) {
                 printf("Erro ao alocar memoria.\n");
@@ -33,20 +32,20 @@
             }
             
             
-            // Geração aleatória dos valores do vetor
+            // geracao aleatoria dos valores do vetor
             for (int a = 0; a < tamanho; a++)
                 vetor[a] = rand() % tamanho;
 
-            // Medindo o tempo de execução do Insertion Sort
+            // mede o tempo de execucao do Insertion Sort
             t = clock(); // armazena tempo inicial
             insercao(tamanho, vetor);
             t = clock() - t; // calcula o tempo final
 
-            // Imprime o tempo em segundos
+            // imprime o tempo em segundos
         
             printf(" %d             %.6f s\n", tamanho, ((double)t) / CLOCKS_PER_SEC);
 
-            // Libera o vetor
+            // libera o vetor
             free(vetor);
         }
 

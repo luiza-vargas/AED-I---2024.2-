@@ -2,7 +2,6 @@
     #include <stdlib.h>
     #include <time.h> // clock(), CLOCKS_PER_SEC e clock_t
 
-    // Função de intercalação do MergeSort
     void Intercala(int p, int q, int r, int v[]) {
         int i, j, k, *w;
 
@@ -18,18 +17,14 @@
                 w[k++] = v[j++];
             }
         }
-
-        // Copia os elementos restantes do primeiro subarray (se houver)
         while (i < q) {
             w[k++] = v[i++];
         }
 
-        // Copia os elementos restantes do segundo subarray (se houver)
         while (j < r) {
             w[k++] = v[j++];
         }
 
-        // Copia os elementos intercalados para o vetor original
         for (i = p; i < r; i++) {
             v[i] = w[i - p];
         }
@@ -37,7 +32,6 @@
         free(w);
     }
 
-    // Função principal do MergeSort
     void Mergesort(int p, int r, int v[]) {
         if (p < r - 1) {
             int q = (p + r) / 2;
@@ -49,23 +43,23 @@
     }
 
     int main() {
-        clock_t t; // variável para armazenar tempo
+        clock_t t; // variavel para armazenar tempo
         int *vetor;
 
         printf("Tamanho\tTempo (s)\n");
 
         for (int tamanho = 0; tamanho <= 400000; tamanho += 20000) {
-            // Aloca dinamicamente o vetor
+            // aloca dinamicamente o vetor
             vetor = (int *)malloc(tamanho * sizeof(int));
             if (vetor == NULL && tamanho > 0) {
                 printf("Erro ao alocar memoria para tamanho %d.\n", tamanho);
                 return 1;
             }
 
-            // Gera a semente de aleatoriedade
+            // gera a semente de aleatoriedade
             srand((unsigned)time(NULL));
 
-            // Geração aleatória dos valores do vetor (ignorado se tamanho == 0)
+            // geracao aleatoria dos valores do vetor (ignorado se tamanho == 0)
             for (int a = 0; a < tamanho; a++) {
                 vetor[a] = rand() % tamanho;
             }
@@ -80,7 +74,7 @@
             // Imprime o tamanho e o tempo em segundos
             printf("%d\t%.6f\n", tamanho, ((double)t) / CLOCKS_PER_SEC);
 
-            // Libera a memória alocada (exceto para tamanho == 0)
+            // Libera a memoria alocada (exceto para tamanho == 0)
             if (tamanho > 0) {
                 free(vetor);
             }

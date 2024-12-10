@@ -32,14 +32,14 @@
         }
 
 
-    void Quicksort (int p, int r, int v[]) {
-        int j;
-            if (p < r) {
-            j = separa (p, r, v);
-            Quicksort (p, j - 1, v);
-            Quicksort (j + 1, r, v);
-            }
-    }
+            void Quicksort (int p, int r, int v[]) {
+                int j;
+                if (p < r) {
+                j = separa (p, r, v);
+                Quicksort (p, j - 1, v);
+                Quicksort (j + 1, r, v);
+                }
+        }
 
         int main() {
             clock_t t; // variável para armazenar tempo

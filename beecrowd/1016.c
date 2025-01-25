@@ -1,13 +1,13 @@
-#include <stdio.h>
+    #include <stdio.h>
 
-int main() {
-    int distancia, tempo;
+    int main() {
+        int distancia, tempo;
 
-    scanf("%d", &distancia);
+        scanf("%d", &distancia);
 
-    tempo = distancia * 2;
+        tempo = distancia * 2;
 
-    printf("%d minutos\n", tempo);
+        printf("%d minutos\n", tempo);
 
-    return 0;
-}
+        return 0;
+    }

@@ -1,29 +1,19 @@
-#include <stdio.h>
+    #include <stdio.h>
 
-int main() {
-    int horai, mini, horaf, minf;
-    int duracao_horas, duracao_minutos;
+    int main() {
+        int dias, anos, meses, dias_restantes;
 
-    scanf("%d %d %d %d", &horai, &mini, &horaf, &minf);
-    
-    int inicio_total = horai * 60 + mini;
-    int fim_total = horaf * 60 + minf;
+        scanf("%d", &dias);
 
-    int duracao_total;
-    if (fim_total > inicio_total) {
-        duracao_total = fim_total - inicio_total;
-    } else {
-        duracao_total = (24 * 60 - inicio_total) + fim_total;
+        anos = dias / 365;
+        dias_restantes = dias % 365;
+        meses = dias_restantes / 30;
+        dias_restantes = dias_restantes % 30;
+
+        printf("%d ano(s)\n", anos);
+        printf("%d mes(es)\n", meses);
+        printf("%d dia(s)\n", dias_restantes);
+
+        return 0;
     }
 
-    duracao_horas = duracao_total / 60;
-    duracao_minutos = duracao_total % 60;
-
-    if (duracao_horas == 24 && duracao_minutos > 0) {
-        duracao_horas = 0;
-    }
-
-    printf("O JOGO DUROU %d HORA(S) E %d MINUTO(S)\n", duracao_horas, duracao_minutos);
-
-    return 0;
-}

@@ -26,11 +26,17 @@ Graph GRAPHinit( int V) {
 /* REPRESENTAÇÃO POR MATRIZ DE ADJACÊNCIAS: A função MATRIXint() aloca uma matriz com linhas 0..r-1 e colunas 0..c-1. Cada elemento da matriz recebe valor val. */
 static int **MATRIXint( int r, int c, int val) { 
    int **m = malloc( r * sizeof (int *));
+
+   //Para cada linha i (de 0 a r - 1), é alocada memória para c colunas.
+   //Cada m[i] agora aponta para um vetor de c inteiros.
    for (vertex i = 0; i < r; ++i) 
       m[i] = malloc( c * sizeof (int));
+
+   //Todos os elementos da matriz são inicializados com o valor val.
    for (vertex i = 0; i < r; ++i)
       for (vertex j = 0; j < c; ++j)
          m[i][j] = val;
+   
    return m;
 }
 
@@ -47,7 +53,7 @@ Se não existe arco v-w, a função não faz nada. */
 void GRAPHremoveArc( Graph G, vertex v, vertex w) { 
    if (G->adj[v][w] == 1) {
       G->adj[v][w] = 0; 
-      G->A--;
+      G->A--;// diminui o valor de arestas
    }
 }
 /*  A função GRAPHshow() imprime, para cada vértice v do grafo G, em uma linha, todos os vértices adjacentes a v. */
